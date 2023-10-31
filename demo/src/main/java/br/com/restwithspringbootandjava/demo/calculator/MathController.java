@@ -12,7 +12,18 @@ public class MathController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double sum(@PathVariable(value = "numberOne") String numberOne, @PathVariable(value = "numberTwo") String numberTwo){
-        return 1D;
+    public Double sum(@PathVariable(value = "numberOne") String numberOne, @PathVariable(value = "numberTwo") String numberTwo) throws Exception{
+        if(!isNumber(numberOne) || !isNumber(numberTwo)){
+            throw new Exception();
+        }
+        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+    }
+
+    private Double convertToDouble(String numberOne) {
+        return null;
+    }
+
+    private boolean isNumber(String numberOne) {
+        return false;
     }
 }
