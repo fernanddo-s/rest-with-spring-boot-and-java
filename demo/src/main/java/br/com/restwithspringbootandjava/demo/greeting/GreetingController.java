@@ -1,4 +1,4 @@
-package br.com.restwithspringbootandjava.demo;
+package br.com.restwithspringbootandjava.demo.greeting;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
