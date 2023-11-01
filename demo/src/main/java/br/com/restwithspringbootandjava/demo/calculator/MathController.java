@@ -17,7 +17,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return Calculator.sum(numberOne, numberTwo);
     }
 
     @RequestMapping(value = "/sub/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -25,7 +25,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+        return Calculator.sub(numberOne, numberTwo);
     }
 
     @RequestMapping(value = "/mul/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -33,7 +33,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+        return Calculator.mul(numberOne, numberTwo);
     }
 
     @RequestMapping(value = "/div/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -41,7 +41,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+        return Calculator.div(numberOne, numberTwo);
     }
 
     @RequestMapping(value = "/media/{numberOne}/{numberTwo}", method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class MathController {
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return (convertToDouble(numberOne) + convertToDouble(numberTwo))/2;
+        return Calculator.media(numberOne, numberTwo);
     }
 
     @RequestMapping(value = "/raiz/{numberOne}", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class MathController {
         if(!isNumeric(numberOne)){
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return Math.sqrt(convertToDouble(numberOne));
+        return Calculator.raiz(numberOne);
     }
 
     private Double convertToDouble(String strNumber) {
