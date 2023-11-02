@@ -3,6 +3,8 @@ package com.example.project.service;
 import com.example.project.model.Person;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
@@ -22,4 +24,20 @@ public class PersonService {
         p.setGender("Male");
         return p;
     }
+
+    public List<Person> findAll(){
+        logger.info("Finding all people!");
+        ArrayList<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            Person p = new Person();
+            p.setId(counter.incrementAndGet());
+            p.setFirstName("First Name " + i);
+            p.setLastName("Last Name " + i);
+            p.setAddres("Brasil");
+            p.setGender("Male");
+            persons.add(p);
+        }
+        return persons;
+    }
+
 }
