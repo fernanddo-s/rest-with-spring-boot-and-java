@@ -25,6 +25,20 @@ public class PersonService {
         return p;
     }
 
+    public Person create(Person person){
+        logger.info("Creating one person!");
+        return person;
+    }
+
+    public Person update(Person person){
+        logger.info("Updating one person!");
+        return person;
+    }
+
+    public void delete(String id){
+        logger.info("Deleting one person!");
+    }
+
     public List<Person> findAll(){
         logger.info("Finding all people!");
         ArrayList<Person> persons = new ArrayList<>();
