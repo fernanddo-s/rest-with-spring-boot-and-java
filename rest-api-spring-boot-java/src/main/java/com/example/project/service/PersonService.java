@@ -6,9 +6,7 @@ import com.example.project.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
 @Service
@@ -29,6 +27,11 @@ public class PersonService {
         p.setGender("Male");
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records for this ID!"));
+    }
+
+    public List<Person> findAll(){
+        logger.info("Finding all people!");
+        return repository.findAll();
     }
 
     public Person create(Person person){
@@ -52,11 +55,6 @@ public class PersonService {
         Person person = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records for this ID!"));
         repository.delete(person);
-    }
-
-    public List<Person> findAll(){
-        logger.info("Finding all people!");
-        return repository.findAll();
     }
 
 }
