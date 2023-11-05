@@ -1,24 +1,18 @@
-package com.example.project.model;
-
-import jakarta.persistence.*;
+package com.example.project.data.dto.v1;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "person")
-public class Person implements Serializable {
+public class PersonDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
     private String address;
     private String gender;
 
-    public Person() {
+    public PersonDTO() {
     }
 
     public Long getId() {
@@ -65,8 +59,8 @@ public class Person implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address) && Objects.equals(gender, person.gender);
+        PersonDTO personDTO = (PersonDTO) o;
+        return id == personDTO.id && Objects.equals(firstName, personDTO.firstName) && Objects.equals(lastName, personDTO.lastName) && Objects.equals(address, personDTO.address) && Objects.equals(gender, personDTO.gender);
     }
 
     @Override
