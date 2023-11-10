@@ -1,6 +1,7 @@
 package com.example.project.service;
 
 import com.example.project.data.dto.v1.PersonDTO;
+import com.example.project.data.dto.v2.PersonDTOV2;
 import com.example.project.exceptions.ResourceNotFoundException;
 import com.example.project.mapper.ObjectsMapper;
 import com.example.project.model.Person;
@@ -41,6 +42,13 @@ public class PersonService {
         logger.info("Creating one person!");
         var entity = ObjectsMapper.parseObject(person, Person.class);
         var dto = ObjectsMapper.parseObject(repository.save(entity), PersonDTO.class);
+        return dto;
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person){
+        logger.info("Creating one person with V2!");
+        var entity = ObjectsMapper.parseObject(person, Person.class);
+        var dto = ObjectsMapper.parseObject(repository.save(entity), PersonDTOV2.class);
         return dto;
     }
 
