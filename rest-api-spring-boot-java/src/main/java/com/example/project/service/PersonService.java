@@ -1,10 +1,8 @@
 package com.example.project.service;
 
 import com.example.project.data.dto.v1.PersonDTO;
-import com.example.project.data.dto.v2.PersonDTOV2;
 import com.example.project.exceptions.ResourceNotFoundException;
 import com.example.project.mapper.ObjectsMapper;
-import com.example.project.mapper.custom.PersonMapper;
 import com.example.project.model.Person;
 import com.example.project.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +16,6 @@ public class PersonService {
 
     @Autowired
     PersonRepository repository;
-
-    @Autowired
-    PersonMapper mapper;
 
     private Logger logger = Logger.getLogger(PersonService.class.getName());
 
@@ -46,13 +41,6 @@ public class PersonService {
         logger.info("Creating one person!");
         var entity = ObjectsMapper.parseObject(person, Person.class);
         var dto = ObjectsMapper.parseObject(repository.save(entity), PersonDTO.class);
-        return dto;
-    }
-
-    public PersonDTOV2 createV2(PersonDTOV2 person){
-        logger.info("Creating one person with V2!");
-        var entity = mapper.convertDTOToEntity(person);
-        var dto = mapper.convertEntityToDTO(repository.save(entity));
         return dto;
     }
 
