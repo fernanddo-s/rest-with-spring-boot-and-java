@@ -2,8 +2,8 @@ package com.example.project.controllers;
 
 import com.example.project.data.dto.v1.PersonDTO;
 import com.example.project.service.PersonService;
+import com.example.project.utils.MediaTypeCustom;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +15,24 @@ public class PersonController {
 
     @Autowired
     private PersonService service;
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(produces = {MediaTypeCustom.APPLICATION_JSON, MediaTypeCustom.APPLICATION_XML, MediaTypeCustom.APPLICATION_YML})
     public List<PersonDTO> findAll(){
         return service.findAll();
     }
 
-    @GetMapping(value = "/{id}",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/{id}",produces = {MediaTypeCustom.APPLICATION_JSON, MediaTypeCustom.APPLICATION_XML, MediaTypeCustom.APPLICATION_YML})
     public PersonDTO findById(@PathVariable(value = "id") Long id){
         return service.findById(id);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(consumes = {MediaTypeCustom.APPLICATION_JSON, MediaTypeCustom.APPLICATION_XML, MediaTypeCustom.APPLICATION_YML},
+            produces = {MediaTypeCustom.APPLICATION_JSON, MediaTypeCustom.APPLICATION_XML, MediaTypeCustom.APPLICATION_YML})
     public PersonDTO create(@RequestBody PersonDTO person){
         return service.create(person);
     }
 
-    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PutMapping(consumes = {MediaTypeCustom.APPLICATION_JSON, MediaTypeCustom.APPLICATION_XML, MediaTypeCustom.APPLICATION_YML},
+            produces = {MediaTypeCustom.APPLICATION_JSON, MediaTypeCustom.APPLICATION_XML, MediaTypeCustom.APPLICATION_YML})
     public PersonDTO update(@RequestBody PersonDTO person){
         return service.update(person);
     }
