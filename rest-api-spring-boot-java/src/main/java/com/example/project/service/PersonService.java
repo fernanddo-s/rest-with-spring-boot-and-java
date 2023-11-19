@@ -27,20 +27,23 @@ public class PersonService {
 
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records for this ID!"));
-        PersonDTO dto =  ObjectsMapper.parseObject(entity, PersonDTO.class);
+        var dto =  ObjectsMapper.parseObject(entity, PersonDTO.class);
         dto.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
         return dto;
     }
 
     public List<PersonDTO> findAll(){
         logger.info("Finding all people!");
-        return ObjectsMapper.parseListObjects(repository.findAll(), PersonDTO.class);
+        var persons = ObjectsMapper.parseListObjects(repository.findAll(), PersonDTO.class);
+        persons.stream().forEach(p -> p.add(linkTo(methodOn(PersonController.class).findById(p.getId())).withSelfRel()));
+        return persons;
     }
 
     public PersonDTO create(PersonDTO person){
         logger.info("Creating one person!");
         var entity = ObjectsMapper.parseObject(person, Person.class);
         var dto = ObjectsMapper.parseObject(repository.save(entity), PersonDTO.class);
+        dto.add(linkTo(methodOn(PersonController.class).findById(dto.getId())).withSelfRel());
         return dto;
     }
 
