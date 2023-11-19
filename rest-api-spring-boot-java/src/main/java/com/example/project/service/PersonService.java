@@ -1,11 +1,14 @@
 package com.example.project.service;
 
+import com.example.project.controllers.PersonController;
 import com.example.project.data.dto.v1.PersonDTO;
 import com.example.project.exceptions.ResourceNotFoundException;
 import com.example.project.mapper.ObjectsMapper;
 import com.example.project.model.Person;
 import com.example.project.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,14 +25,11 @@ public class PersonService {
     public PersonDTO findById(Long id){
         logger.info("Finding one person!");
 
-        PersonDTO p = new PersonDTO();
-        p.setFirstName("Fernando");
-        p.setLastName("Sousa");
-        p.setAddress("Quixadá - Ceará - Brasil");
-        p.setGender("Male");
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records for this ID!"));
-        return ObjectsMapper.parseObject(entity, PersonDTO.class);
+        PersonDTO dto =  ObjectsMapper.parseObject(entity, PersonDTO.class);
+        dto.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        return dto;
     }
 
     public List<PersonDTO> findAll(){
