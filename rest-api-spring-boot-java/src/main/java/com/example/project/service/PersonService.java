@@ -2,6 +2,7 @@ package com.example.project.service;
 
 import com.example.project.controllers.PersonController;
 import com.example.project.data.dto.v1.PersonDTO;
+import com.example.project.exceptions.RequiredObjectIsNullException;
 import com.example.project.exceptions.ResourceNotFoundException;
 import com.example.project.mapper.ObjectsMapper;
 import com.example.project.model.Person;
@@ -40,6 +41,7 @@ public class PersonService {
     }
 
     public PersonDTO create(PersonDTO person){
+        if (person == null) throw  new RequiredObjectIsNullException();
         logger.info("Creating one person!");
         var entity = ObjectsMapper.parseObject(person, Person.class);
         var dto = ObjectsMapper.parseObject(repository.save(entity), PersonDTO.class);
@@ -48,6 +50,7 @@ public class PersonService {
     }
 
     public PersonDTO update(PersonDTO person){
+        if (person == null) throw  new RequiredObjectIsNullException();
         logger.info("Updating one person!");
         var entity = repository.findById(person.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
