@@ -78,4 +78,31 @@ public class PersonServiceTest {
         assertEquals("Female",result.getGender());
     }
 
+    @Test
+    void testUpdate(){
+        Person entity = input.mockEntity(1);
+        entity.setId(1L);
+
+        Person persisted = entity;
+        persisted.setId(1L);
+
+        PersonDTO dto = input.mockDTO(1);
+        dto.setId(1L);
+
+        when(repository.findById(1L)).thenReturn(Optional.of(entity));
+        when(repository.save(entity)).thenReturn(persisted);
+
+        var result = service.update(dto);
+
+        assertNotNull(result);
+        assertNotNull(result.getId());
+        assertNotNull(result.getLinks());
+
+        assertTrue(result.toString().contains("links: [</person/1>;rel=\"self\"]"));
+        assertEquals("Address Test1",result.getAddress());
+        assertEquals("First Name Test1",result.getFirstName());
+        assertEquals("Last Name Test1",result.getLastName());
+        assertEquals("Female",result.getGender());
+    }
+
 }

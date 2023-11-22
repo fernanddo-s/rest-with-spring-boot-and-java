@@ -56,6 +56,7 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
         var dto = ObjectsMapper.parseObject(repository.save(entity), PersonDTO.class);
+        dto.add(linkTo(methodOn(PersonController.class).findById(dto.getId())).withSelfRel());
         return dto;
     }
 
