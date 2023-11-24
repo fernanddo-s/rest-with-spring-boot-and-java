@@ -3,6 +3,7 @@ package com.example.project.controllers;
 import com.example.project.data.dto.v1.PersonDTO;
 import com.example.project.service.PersonService;
 import com.example.project.utils.MediaTypeCustom;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("api/person/v1")
+@Tag(name = "People", description = "Endpoints for Managing People")
 public class PersonController {
 
     @Autowired
