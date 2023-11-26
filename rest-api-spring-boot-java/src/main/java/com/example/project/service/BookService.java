@@ -35,7 +35,7 @@ public class BookService {
     }
 
     public List<BookDTO> findAll(){
-        logger.info("Finding all people!");
+        logger.info("Finding all books!");
         var books = ObjectsMapper.parseListObjects(repository.findAll(), BookDTO.class);
         books.stream().forEach(p -> p.add(linkTo(methodOn(BookController.class).findById(p.getId())).withSelfRel()));
         return books;
