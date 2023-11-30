@@ -176,5 +176,4 @@ public class BookServiceTest {
         assertEquals(25D,bookSeven.getPrice());
         assertEquals("Title Test7",bookSeven.getTitle());
     }
-
 }

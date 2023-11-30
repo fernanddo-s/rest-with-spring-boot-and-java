@@ -9,7 +9,6 @@ import java.util.List;
 
 public class MockBook {
 
-
     public Book mockEntity() {
         return mockEntity(0);
     }
@@ -53,5 +52,4 @@ public class MockBook {
         book.setTitle("Title Test" + number);
         return book;
     }
-
 }
