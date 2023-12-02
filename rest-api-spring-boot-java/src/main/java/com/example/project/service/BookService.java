@@ -70,5 +70,4 @@ public class BookService {
                 .orElseThrow(() -> new ResourceNotFoundException("No records for this ID!"));
         repository.delete(book);
     }
-
 }
