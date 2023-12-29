@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 public class AbstractIntegrationTest {
-    public class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        static PostgreSQLContainer<?> postgre = new PostgreSQLContainer<>("postgresql:16.1");
+    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+        static PostgreSQLContainer<?> postgre = new PostgreSQLContainer<>("postgres:16.1");
         private static void startContaniners(){
             Startables.deepStart(Stream.of(postgre)).join();
         }
