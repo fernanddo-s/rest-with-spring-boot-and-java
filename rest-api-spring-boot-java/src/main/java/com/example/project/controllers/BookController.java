@@ -27,7 +27,7 @@ public class BookController {
         tags = {"Books"},
         responses = {
                 @ApiResponse(description = "Success", responseCode = "200",
-                content = {@Content(mediaType = "aplication/json", array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))}),
+                content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))}),
                 @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                 @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
                 @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),

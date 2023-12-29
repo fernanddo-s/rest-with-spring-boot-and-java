@@ -14,16 +14,16 @@ import java.util.stream.Stream;
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 public class AbstractIntegrationTest {
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        static PostgreSQLContainer<?> postgre = new PostgreSQLContainer<>("postgres:16.1");
+        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16.1");
         private static void startContaniners(){
-            Startables.deepStart(Stream.of(postgre)).join();
+            Startables.deepStart(Stream.of(postgres)).join();
         }
 
         private static Map<String, String> createConnectionConfiguration() {
             return Map.of(
-                    "spring.datasource.url", postgre.getJdbcUrl(),
-                    "spring.datasource.username", postgre.getUsername(),
-                    "spring.datasource.password", postgre.getPassword()
+                    "spring.datasource.url", postgres.getJdbcUrl(),
+                    "spring.datasource.username", postgres.getUsername(),
+                    "spring.datasource.password", postgres.getPassword()
             );
         }
 
